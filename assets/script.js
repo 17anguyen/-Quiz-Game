@@ -19,11 +19,11 @@ var count = document.querySelector("#count");
 
 
 // timer function
-// function timer ( {
-//   // timer.textContent= '';
-//     count++
-// }, 1000);
-// }
+function timer ( {
+  // timer.textContent= '';
+    count++
+}, 1000);
+}
 
 
 
