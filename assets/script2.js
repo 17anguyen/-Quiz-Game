@@ -3,17 +3,13 @@ var timer = document.querySelector(".timer");
 var mainEl = document.getElementById(".main");
 var questions = document.querySelector(".question");
 var answers = document.querySelector(".answers");
-var count = document.querySelector("#count");
+var initialsButton = document.querySelector("#initials-submit");
 var score = 0
-var q1 = document.getElementById("q1");
-var q2 = document.getElementById("q2");
-var q3 = document.getElementById("q3");
-var q4 = document.getElementById("q4");
-var q5 = document.getElementById("q5");
-var questionNum = 1
+var timerId;
 var currentQuestionIndex = 0;
 var choicesEl = document.getElementById('choices');
 var time = 60;
+// var initials = inputInitials.value.trim(); initials.toUpperCase();
 
 
 var questions = [
@@ -70,137 +66,122 @@ function getQuestion() {
     // display on the page
     choicesEl.appendChild(choiceNode);
   }
-  
+
 }
-// Function to check the user's answer
+// // Function to check the user's answer
 function checkAnswer(event) {
-  
+
   // Get the text content of the clicked answer
-  var userAnswer = event.target.textContent;
-  
-  if (event.target.getAttribute("data-answerChoice")==="true") {
-    console.log("answer is true")
-  }
+  var answer = event.target.textContent;
+
   // Check if the user's answer is correct
-  if (event.target.getAttribute("data-answerChoice")==="true") {
+  if (answer === "true") {
     console.log("answer is true")
     result.textContent = "Correct!";
-    score = score+1
+    score = score + 1
     result.style.color = "#97c1a9";
-    questionNum++
-    changeQuestion();
+    currentQuestionIndex++;
+    console.log("answer section is working")
   } else {
+    time -= 10
     result.textContent = "Wrong answer, try again.";
     result.style.color = "#ff967a";
-    questionNum++
-    changeQuestion();
-  } 
-  console.log(questionNum);
+    currentQuestionIndex++;
+  }
 }
 
 getQuestion();
 
 function questionClick(event) {
   // result right or wrong
-  var answer = event.target;
-
+  answer = event.target;
+  console.log("click event is working")
   // move to next question
   currentQuestionIndex++;
-
+  checkAnswer();
   // check if we've run out of questions
-if (time <= 0 || currentQuestionIndex === questions.length) {
+  if (time <= 0 || currentQuestionIndex === questions.length) {
     quizEnd();
   } else {
     getQuestion();
   }
 }
 
-var timerId = setInterval(
-function clockTick() {
-  time = setInterval(function () {
+
+
+function startTimer() {
+  timerId = setInterval(function () {
     if (time > 1) {
       timer.textContent = time;
       time--;
     } else if (time <= 0) {
       quizEnd();
     }
-  },1000);
-});
-function startTimer() {
-  timeLeft = 100
-  timer.textContent = timeLeft + " seconds left";
-  gameTimer = setInterval(function(){
-      timeLeft--
-      timer.textContent = timeLeft + " seconds left";
-      if(timeLeft<=0) {
-          timesUp();
-      }
-  },1000)
+  }, 1000);
 }
-
+startTimer()
 
 choicesEl.onclick = questionClick;
 
-
-
+// document.addEventListener("submit",function(event)){
+//     event.preventDefault();
+//     event.target.matches("form")
+//     retrieveScores();
+//     var initialsInput = document.querySelector("form input");
+//     if (initials === "") {
+//         return;
+//     }
+//  var scoreResult = [] {
+//     scoreResult.push(initials);
+//     scoreResult.push(score);
+//     highScores.push(scoreResult)
+//     storeScores();
+//     renderScores();
+//     replayBtn.textContent = "replay";
+//     assessment.textContent=""
+//   };
 
 function quizEnd() {
   // stop timer
   clearInterval(timerId);
 
-  // display an input and a button 
+  // display initials section
 
-  // get value of the input on button click 
 
-  // save to local storage 
+  
 
   // create an array to push a new key value pair with initials and a score
 
   // format new score object for current user
+
+  // 1. get existing scores
+  // 1. a. if no existing, create empty array
+  // 2. add newscore to array
+  // 3. setItem back to ls
+
+
+
+};
+
+
+function saveScores (initials) {
   var newScore = {
     score: time,
     initials: initials,
-  };
+  }; 
+  var highscores= JSON.parse(localStorage.getItem("highscores"))
+  if ( highscores == null) {
+    highscores = []
+  }
 
+  
   // save to localstorage
   highscores.push(newScore);
-  window.localStorage.setItem('highscores', JSON.stringify(highscores));
-
+  localStorage.setItem('highscores', JSON.stringify(highscores));
+  // render topscores on the page
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// score tracker
-// TODO: find out how to get this to work
-// scores.addEventListener("click");
-
-// // game start button
-// function startGame() {
-
-// startButton.addEventListener("click", function () {
-// timer();
-// // startButton.item(0).setAttribute('style', 'display:none;')
-// }
-// )
-
-
-// timer function
-// function timer ( {
-//   // timer.textContent= '';
-//     count++
-// }, 1000);
-// }
+initialsButton.addEventListener("click", function (){
+  // get value of initials input 
+  // saveScores(initials)
+}) 
