@@ -93,6 +93,11 @@ button {
 .question {
     font-size: 40px;
     text-align: center;
+    display: block;
+}
+
+.hidden {
+    display: none;
 }
 
 /* answers */
