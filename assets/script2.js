@@ -4,13 +4,14 @@ var mainEl = document.getElementById(".main");
 var questions = document.querySelector(".question");
 var answers = document.querySelector(".answers");
 var initialsButton = document.querySelector("#initials-submit");
-var init= document.getElementById("#initials")
+var initEl= document.getElementById("#initials")
 var score = 0
 var timerId;
 var currentQuestionIndex = 0;
 var choicesEl = document.getElementById('choices');
 var time = 60;
 var endQuiz = document.querySelector(".quiz-end");
+var scoreButton = document.querySelector(".scores")
 // var initials = inputInitials.value.trim(); initials.toUpperCase();
 
 
@@ -113,7 +114,7 @@ function questionClick(event) {
 
 function startTimer() {
   timerId = setInterval(function () {
-    if (time > 1) {
+    if (time > 0) {
       timer.textContent = time;
       time--;
     } else if (time <= 0) {
@@ -163,32 +164,38 @@ function quizEnd() {
   // 3. setItem back to ls
 
 
-
+ 
 };
 
 
-function saveScores (initials) {
+function saveScores () {
   var newScore = {
-    score: time,
-    initials: initials,
+    highscores = "";
+    init = "";
+    console.log(newScore);
   }; 
+
+
   var highscores= JSON.parse(localStorage.getItem("highscores"))
   if ( highscores == null) {
     highscores = []
   }
-
-  
   // save to localstorage
   highscores.push(newScore);
   localStorage.setItem('highscores', JSON.stringify(highscores));
   // render topscores on the page
   endQuiz.classList.remove("hidden")
 
+
+  var init= JSON.parse(localStorage.getItem("init"))
+
+  initialsButton.addEventListener("click", function (){
+  localStorage.setItem('init', JSON.stringify(init));
+  init.push(newScore);
+
+    // get value of initials input 
+    // saveScores(initials)
+  }) ;
 }
 
-var init= JSON.parse(localStorage.)
-initialsButton.addEventListener("click", function (){
-localStorage.setItem('')
-  // get value of initials input 
-  // saveScores(initials)
-}) ;
+
