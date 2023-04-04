@@ -74,9 +74,9 @@ function checkAnswer(event) {
   // Get the text content of the clicked answer
   var userAnswer = event.target.textContent;
   
-  // if (event.target.getAttribute("data-answerChoice")==="true") {
-  //   console.log("answer is true")
-  
+  if (event.target.getAttribute("data-answerChoice")==="true") {
+    console.log("answer is true")
+  }
   // Check if the user's answer is correct
   if (event.target.getAttribute("data-answerChoice")==="true") {
     console.log("answer is true")

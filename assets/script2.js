@@ -1,8 +1,8 @@
 var startButton = document.querySelector(".start");
 var timer = document.querySelector(".timer");
 var mainEl = document.getElementById(".main");
-var questions = document.querySelector (".question");
-var answers = document.querySelector (".answers");
+var questions = document.querySelector(".question");
+var answers = document.querySelector(".answers");
 var count = document.querySelector("#count");
 var score = 0
 var q1 = document.getElementById("q1");
@@ -23,33 +23,28 @@ var questions = [
     answer: 'Dolphin',
   },
   {
-    title: 'Which was the most expensive Nintendo console ever?,
+    title: 'Which was the most expensive Nintendo console ever?',
     choices: ['OLED Switch', 'Game Boy Advance', '3DS', 'Wii Supreme'],
-    answer: 'parentheses',
+    answer: 'Wii Supreme',
   },
   {
-    title: 'Arrays in JavaScript can be used to store ____.',
-    choices: [
-      'numbers and strings',
-      'other arrays',
-      'booleans',
-      'all of the above',
-    ],
-    answer: 'all of the above',
+    title: 'In the handheld market, Nintendo has had many trials, the most successful being the amazingly addictive Game Boy, which was introduced to the world in 1989. However, Nintendo had another console sold as a "portable system", but it definitely was not. Released in 1995, it was a heavy and a dangerous console, and a major flop! What was it called?',
+    choices: ['SNES', 'Virtual Boy', '3DS', 'Wii U'],
+    answer: 'Virtual Boy',
   },
   {
-    title:
-      'String values must be enclosed within ____ when being assigned to variables.',
-    choices: ['commas', 'curly brackets', 'quotes', 'parentheses'],
-    answer: 'quotes',
+    title: 'What was the SNES called in Japan?',
+    choices: ['Super Famicom', 'Ultra Famicom', 'Famicom', 'Famicom Platinum'],
+    answer: 'Super Famicom.',
   },
   {
-    title:
-      'A very useful tool used during development and debugging for printing content to the debugger is:',
-    choices: ['JavaScript', 'terminal / bash', 'for loops', 'console.log'],
-    answer: 'console.log',
+    title: 'Which was the first N64 game to support the Rumble Pak?',
+    choices: ['Star Fox 64', 'Super Mario 64', 'Super Smash Bros.', 'Pokemon Stadium'],
+    answer: 'Star Fox 64',
   },
 ];
+
+
 
 function getQuestion() {
   // get current question object from array
@@ -75,39 +70,79 @@ function getQuestion() {
     // display on the page
     choicesEl.appendChild(choiceNode);
   }
+  
+}
+// Function to check the user's answer
+function checkAnswer(event) {
+  
+  // Get the text content of the clicked answer
+  var userAnswer = event.target.textContent;
+  
+  if (event.target.getAttribute("data-answerChoice")==="true") {
+    console.log("answer is true")
+  }
+  // Check if the user's answer is correct
+  if (event.target.getAttribute("data-answerChoice")==="true") {
+    console.log("answer is true")
+    result.textContent = "Correct!";
+    score = score+1
+    result.style.color = "#97c1a9";
+    questionNum++
+    changeQuestion();
+  } else {
+    result.textContent = "Wrong answer, try again.";
+    result.style.color = "#ff967a";
+    questionNum++
+    changeQuestion();
+  } 
+  console.log(questionNum);
 }
 
 getQuestion();
 
 function questionClick(event) {
   // result right or wrong
-  var buttonEl = event.target;
+  var answer = event.target;
 
   // move to next question
   currentQuestionIndex++;
 
   // check if we've run out of questions
-  if (time <= 0 || currentQuestionIndex === questions.length) {
+if (time <= 0 || currentQuestionIndex === questions.length) {
     quizEnd();
   } else {
     getQuestion();
   }
 }
 
-choicesEl.onclick = questionClick;
-// start timer
-timerId = setInterval(clockTick, 1000);
-
+var timerId = setInterval(
 function clockTick() {
-  // update time
-  time--;
-  // timerEl.textContent = time;
-
-  // check if user ran out of time
-  if (time <= 0) {
-    quizEnd();
-  }
+  time = setInterval(function () {
+    if (time > 1) {
+      timer.textContent = time;
+      time--;
+    } else if (time <= 0) {
+      quizEnd();
+    }
+  },1000);
+});
+function startTimer() {
+  timeLeft = 100
+  timer.textContent = timeLeft + " seconds left";
+  gameTimer = setInterval(function(){
+      timeLeft--
+      timer.textContent = timeLeft + " seconds left";
+      if(timeLeft<=0) {
+          timesUp();
+      }
+  },1000)
 }
+
+
+choicesEl.onclick = questionClick;
+
+
+
 
 function quizEnd() {
   // stop timer
