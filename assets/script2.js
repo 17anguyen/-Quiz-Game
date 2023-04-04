@@ -4,11 +4,13 @@ var mainEl = document.getElementById(".main");
 var questions = document.querySelector(".question");
 var answers = document.querySelector(".answers");
 var initialsButton = document.querySelector("#initials-submit");
+var init= document.getElementById("#initials")
 var score = 0
 var timerId;
 var currentQuestionIndex = 0;
 var choicesEl = document.getElementById('choices');
 var time = 60;
+var endQuiz = document.querySelector(".quiz-end");
 // var initials = inputInitials.value.trim(); initials.toUpperCase();
 
 
@@ -69,26 +71,26 @@ function getQuestion() {
 
 }
 // // Function to check the user's answer
-function checkAnswer(event) {
+// function checkAnswer(event) {
 
-  // Get the text content of the clicked answer
-  var answer = event.target.textContent;
+//   // Get the text content of the clicked answer
+//   var answer = event.target.textContent;
 
-  // Check if the user's answer is correct
-  if (answer === "true") {
-    console.log("answer is true")
-    result.textContent = "Correct!";
-    score = score + 1
-    result.style.color = "#97c1a9";
-    currentQuestionIndex++;
-    console.log("answer section is working")
-  } else {
-    time -= 10
-    result.textContent = "Wrong answer, try again.";
-    result.style.color = "#ff967a";
-    currentQuestionIndex++;
-  }
-}
+//   // Check if the user's answer is correct
+//   if (answer === "true") {
+//     console.log("answer is true")
+//     result.textContent = "Correct!";
+//     score = score + 1
+//     result.style.color = "#97c1a9";
+//     currentQuestionIndex++;
+//     console.log("answer section is working")
+//   } else {
+//     time -= 10
+//     result.textContent = "Wrong answer, try again.";
+//     result.style.color = "#ff967a";
+//     currentQuestionIndex++;
+//   }
+// }
 
 getQuestion();
 
@@ -98,7 +100,7 @@ function questionClick(event) {
   console.log("click event is working")
   // move to next question
   currentQuestionIndex++;
-  checkAnswer();
+  // checkAnswer();
   // check if we've run out of questions
   if (time <= 0 || currentQuestionIndex === questions.length) {
     quizEnd();
@@ -144,6 +146,7 @@ choicesEl.onclick = questionClick;
 function quizEnd() {
   // stop timer
   clearInterval(timerId);
+  saveScores ();
 
   // display initials section
 
@@ -179,9 +182,13 @@ function saveScores (initials) {
   highscores.push(newScore);
   localStorage.setItem('highscores', JSON.stringify(highscores));
   // render topscores on the page
+  endQuiz.classList.remove("hidden")
+
 }
 
+var init= JSON.parse(localStorage.)
 initialsButton.addEventListener("click", function (){
+localStorage.setItem('')
   // get value of initials input 
   // saveScores(initials)
-}) 
+}) ;
