@@ -71,27 +71,27 @@ function getQuestion() {
   }
 
 }
-// // Function to check the user's answer
-// function checkAnswer(event) {
+// Function to check the user's answer
+function checkAnswer(event) {
 
-//   // Get the text content of the clicked answer
-//   var answer = event.target.textContent;
+  // Get the text content of the clicked answer
+  var answer = event.target.textContent;
 
-//   // Check if the user's answer is correct
-//   if (answer === "true") {
-//     console.log("answer is true")
-//     result.textContent = "Correct!";
-//     score = score + 1
-//     result.style.color = "#97c1a9";
-//     currentQuestionIndex++;
-//     console.log("answer section is working")
-//   } else {
-//     time -= 10
-//     result.textContent = "Wrong answer, try again.";
-//     result.style.color = "#ff967a";
-//     currentQuestionIndex++;
-//   }
-// }
+  // Check if the user's answer is correct
+  if (answer === "true") {
+    console.log("answer is true")
+    result.textContent = "Correct!";
+    score = score + 1
+    result.style.color = "#97c1a9";
+    currentQuestionIndex++;
+    console.log("answer section is working")
+  } else {
+    time -= 10
+    result.textContent = "Wrong answer, try again.";
+    result.style.color = "#ff967a";
+    currentQuestionIndex++;
+  }
+}
 
 getQuestion();
 
@@ -124,26 +124,7 @@ function startTimer() {
 }
 startTimer()
 
-choicesEl.onclick = questionClick;
-
-// document.addEventListener("submit",function(event)){
-//     event.preventDefault();
-//     event.target.matches("form")
-//     retrieveScores();
-//     var initialsInput = document.querySelector("form input");
-//     if (initials === "") {
-//         return;
-//     }
-//  var scoreResult = [] {
-//     scoreResult.push(initials);
-//     scoreResult.push(score);
-//     highScores.push(scoreResult)
-//     storeScores();
-//     renderScores();
-//     replayBtn.textContent = "replay";
-//     assessment.textContent=""
-//   };
-
+choicesEl.onclick = questionClick
 function quizEnd() {
   // stop timer
   clearInterval(timerId);
