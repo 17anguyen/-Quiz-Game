@@ -170,11 +170,11 @@ function quizEnd() {
 
 function saveScores () {
   var newScore = {
-    highscores = "";
-    init = "";
-    console.log(newScore);
-  }; 
-
+  //   highscores = "";
+  //   init = "";
+  //   console.log(newScore);
+  // }; 
+  }
 
   var highscores= JSON.parse(localStorage.getItem("highscores"))
   if ( highscores == null) {
