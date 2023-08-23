@@ -1,50 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> Nintendo Facts </title>
-  <link rel="stylesheet" href="Assets/style.css">
-</head>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Lunasima&display=swap" rel="stylesheet">
+    <title>Nintendo JavaScript Quiz</title>
+    <link rel="stylesheet" href="./assets/style.css">
+  </head>
 
-<body>
-  <!-- header -->
-  <header class="header">
-      <button class= "scores"> View High Scores </button>
-      <h1 class="timer"></h1>
-  </header>
-<!-- body content -->
-  <body>
+  <body style="background-color: #5B9981; display: flex;
+    flex-direction: column;
+    align-items: center;">
 
-    <main id="main">
-      <button class="start"></button>
-<!-- q1 -->
-    <section class="question" id="q1">
-      <h2 id="question-title"></h2>
-      <h3 class="answers">
-        <ul id="choices">
-      </ul>
-      </h3>
-      <p id="result"></p>
+    <header style="align-items: center;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;">
+      <div class="high-scores">
+        <h2 id="high-score-link" style="font-family: 'Lilita One',
+cursive; color: var(--button-highlight); font-size:35px; margin: 10px;">Last Scores: <span id="last-play-span" style="font-family: 'Lilita One',
+cursive;"> </span>
+        </h2>
+      </div>
+
+      <div class=" timer" style="background-color: #5B9981;">
+        <h2 style="font-family: 'Lilita One',
+cursive; color: var(--button-highlight); font-size:35px; margin: 10px;">Timer: <span id="counter" style="font-family: 'Lilita One',
+cursive;"> </span></h2>
+      </div>
+    </header>
+
+    <div class="start-quiz-btn">
+      <button id="start-btn" style="margin: 10px; padding: 20px;">Start</button>
+      <p style="font-family: 'Lilita One',
+      cursive; color: var(--header-text); font-size:25px; margin: 10px; text-align: center;">Press the start button to
+        start the timer!
+      </p>
+    </div>
+
+    <div class="dialog">
+      <p style="font-family: 'Lilita One',
+cursive; color: var(--header-text); font-size:25px; margin: 10px; text-align: center;">Press the start button to start
+        the timer!
+      </p>
+    </div>
+
+    <main class="quiz-section" style="margin: 10px; padding: 20px;">
+      <section class="quiz-wrapper" id="quiz-wrapper" style="margin: auto;">
+        <div class="question">
+          <h4 id="question-h4" style="font-family: 'Lunasima',
+sans-serif; color: var(--header-text); font-size:50px; margin: 10px;">First question</h4>
+        </div>
+        <div class=" answers-screen" id="answers-screen">
+          <button id="btn1" class="btn-item" style>ans1</button>
+          <button id="btn2" class="btn-item">ans2</button>
+          <button id="btn3" class="btn-item">ans3</button>
+          <button id="btn4" class="btn-item">ans4</button>
+
+          <span id="right-wrong-span"> </span>
+
+        </div>
+      </section>
+
+
+    </main>
+
+    <section class="high-score-screen" id="high-score-screen">
+      <h3 style="font-family: 'Lilita One',
+cursive; color: var(--button-highlight); font-size:35px; margin: 10px;">HighScores</h3>
+      <form>
+        <h3 style="font-family: 'Lilita One',
+cursive; color: var(--button-highlight); font-size:25px; margin: 10px;">Your Score is: <span id="score-span"> </span>
+        </h3>
+        <p id="user-initials-show"> </p>
+        <div id="input-section">
+          <label for="initials-input" style="font-family: 'Lilita One',
+cursive; color: var(--button-highlight); font-size: 25px; width: 25%;">Enter Initials: </label>
+          <input type="text" id="initials-input" style="font-family: 'Lilita One',
+cursive; border: 0px; width: 25%;">
+          <button id=" save-form-btn" style="font-family: 'Lilita One',
+cursive; background-color: var(--accent-color);
+     color: var(--button-highlight); border: 0px;
+     border-radius: 25px; font-size: 25px; width: 25%;">Save</button>
+        </div>
+        <button id="reset-btn" style="visibility: hidden; font-family: 'Lilita One' , cursive; background-color:
+          var(--accent-color); color: var(--button-highlight); border: 0px; border-radius: 25px;"">Reset Game </button>
+      </form>
+
+
     </section>
 
-            <section class="quiz-end hidden">
-              <p></p>
-            
-            <form>
-                <input type="text" placeholder="Enter your intials" maxlength="3" minlength="1" id="initials">
-                <button id="initials-submit">Submit</button>
-            </form>
-            
-        </section>
+    <script src=" ./assets/script.js"></script>
+  </body>
 
-        <section class=".finalscore hidden">
-            <button id="replay">replay?</button>
-        </section>
-    
-  </main>
-</body>
- <script src="assets/script2.js"></script>
 </html>
